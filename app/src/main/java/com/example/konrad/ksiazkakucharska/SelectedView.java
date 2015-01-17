@@ -1,26 +1,36 @@
 package com.example.konrad.ksiazkakucharska;
 
 import android.support.v7.app.ActionBarActivity;
-import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.konrad.ksiazkakucharska.adapter.CommentListAdapter;
+import com.example.konrad.ksiazkakucharska.data.Comment;
+import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
-import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
-import org.w3c.dom.Text;
 
 /**
  * Created by Konrad on 2015-01-16.
  */
 @EActivity(R.layout.activity_selectrecipe)
 public class SelectedView extends ActionBarActivity {
-
     @Extra
     Recipe recipe;
+
+
+    @Bean
+    CommentListAdapter adapter;
+
+    @ViewById
+    ListView listComment;
+
 
     @ViewById
     TextView title;
@@ -39,6 +49,9 @@ public class SelectedView extends ActionBarActivity {
 
     @AfterViews
     void init() {
+        listComment.setAdapter(adapter);
+
+
         title.setText(recipe.title);
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
@@ -46,5 +59,13 @@ public class SelectedView extends ActionBarActivity {
         preparationMinutes.setText(recipe.preparationMinutes);
         cookingMinutes.setText(recipe.cookingMinutes);
         servings.setText(recipe.servings);
+    }
+
+    public void updateComments(CommentList commentList){
+    }
+
+    public void showError(Exception e){
+        Toast.makeText(this, "LOL, nie działa\n" + e.getMessage(), Toast.LENGTH_LONG).show();
+        e.printStackTrace(); //debug
     }
 }
