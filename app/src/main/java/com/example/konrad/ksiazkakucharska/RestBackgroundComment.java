@@ -14,9 +14,9 @@ import org.androidannotations.annotations.rest.RestService;
  */
 
 @EBean
-public class RestBackgroundTask {
+public class RestBackgroundComment {
     @RootContext
-    MainView activity; //activity with listview
+    SelectedView activity; //activity with listview
 
     @RestService
     CookbookRestClient restClient; //use that cool interface
@@ -24,11 +24,11 @@ public class RestBackgroundTask {
 
     //load recipes in background withoud blocking main application ;-)
     @Background
-    void getCookBook(){
+    void getComment(){
         try {
             restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
-            CookBook cookBook = restClient.getCookBook();
-            publishResult(cookBook);
+            CommentList commentList = restClient.getComment();
+            publishResult(commentList);
         } catch (Exception e){ //TODO: avoid using that form of catching exceptions
             publishError(e);
         }
@@ -36,9 +36,9 @@ public class RestBackgroundTask {
 
     //background updating
     @UiThread
-    void publishResult(CookBook cookBook){
-        activity.updateCookbook(cookBook);
-    }
+    void publishResult(CommentList commentList){
+        activity.updateComments(commentList);
+}
     //background updating -> sth failed
     void publishError(Exception e){
         activity.showError(e);

@@ -6,7 +6,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konrad.ksiazkakucharska.adapter.CommentListAdapter;
-import com.example.konrad.ksiazkakucharska.data.Comment;
 import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
 
@@ -14,6 +13,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
+import org.androidannotations.annotations.NonConfigurationInstance;
 import org.androidannotations.annotations.ViewById;
 
 /**
@@ -24,6 +24,9 @@ public class SelectedView extends ActionBarActivity {
     @Extra
     Recipe recipe;
 
+    @Bean
+    @NonConfigurationInstance
+    RestBackgroundComment restBackgroundComment;
 
     @Bean
     CommentListAdapter adapter;
@@ -31,7 +34,7 @@ public class SelectedView extends ActionBarActivity {
     @ViewById
     ListView listComment;
 
-
+//region TextVievs
     @ViewById
     TextView title;
     @ViewById
@@ -46,12 +49,10 @@ public class SelectedView extends ActionBarActivity {
     TextView cookingMinutes;
     @ViewById
     TextView servings;
+//endregion
 
     @AfterViews
     void init() {
-        listComment.setAdapter(adapter);
-
-
         title.setText(recipe.title);
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
@@ -59,9 +60,13 @@ public class SelectedView extends ActionBarActivity {
         preparationMinutes.setText(recipe.preparationMinutes);
         cookingMinutes.setText(recipe.cookingMinutes);
         servings.setText(recipe.servings);
+
+        restBackgroundComment.getComment();
+
     }
 
     public void updateComments(CommentList commentList){
+        adapter.update(commentList);
     }
 
     public void showError(Exception e){

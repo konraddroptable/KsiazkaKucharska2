@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.example.konrad.ksiazkakucharska.R;
 import com.example.konrad.ksiazkakucharska.data.Comment;
-import com.example.konrad.ksiazkakucharska.data.Recipe;
 
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;

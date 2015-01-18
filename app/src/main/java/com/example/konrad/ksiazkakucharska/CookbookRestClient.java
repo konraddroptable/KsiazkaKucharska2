@@ -1,6 +1,5 @@
 package com.example.konrad.ksiazkakucharska;
 
-import com.example.konrad.ksiazkakucharska.data.Comment;
 import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.CookBook;
 import com.example.konrad.ksiazkakucharska.data.EmailAndPassword;

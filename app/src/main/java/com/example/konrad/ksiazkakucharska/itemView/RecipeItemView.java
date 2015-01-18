@@ -9,7 +9,6 @@ import com.example.konrad.ksiazkakucharska.data.Recipe;
 
 import org.androidannotations.annotations.EViewGroup;
 import org.androidannotations.annotations.ViewById;
-import org.w3c.dom.Text;
 
 /**
  * Created by Konrad on 2015-01-15.
