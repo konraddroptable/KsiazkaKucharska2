@@ -31,6 +31,10 @@ public class RecipeItemView extends RelativeLayout {
         title.setText(recipe.title);
 //        created.setText(recipe.created.toString());
         introduction.setText(recipe.introduction);
-        acronym.setText(recipe.title.substring(0,1));
+        try {
+            acronym.setText(recipe.title.substring(0, 1));
+        } catch (StringIndexOutOfBoundsException e){
+            acronym.setText("E");
+        }
 }
 }

@@ -3,6 +3,7 @@ package com.example.konrad.ksiazkakucharska;
 import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.CookBook;
 import com.example.konrad.ksiazkakucharska.data.EmailAndPassword;
+import com.example.konrad.ksiazkakucharska.data.LikeList;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
 import com.example.konrad.ksiazkakucharska.data.User;
 
@@ -28,10 +29,14 @@ public interface CookbookRestClient extends RestClientHeaders {
     void addCookBookEntry(Recipe recipe);
 
     //TODO:Get&Post for selecting/adding comments
-    @Get("/db/comments")
-    CommentList getComment();
+    @Get("/db/comments?filter={path}")
+    CommentList getComment(String path);
 //    @Post("db/comments/{recipeId}")
 //    void addComment(Comment comment);
+
+    //Get&Post likes
+    @Get("/db/likes?filter={path}")
+    LikeList getLike(String path);
 
     //Login for adding recipes/comments
     @Post("/user/session")

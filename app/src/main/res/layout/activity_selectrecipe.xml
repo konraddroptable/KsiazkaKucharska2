@@ -3,8 +3,31 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        >
+        <Button
+            android:id="@+id/comment"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Dodaj komentarz"
+            />
+        <Button
+            android:id="@+id/like"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Lubię to!"
+            />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/title"
+        android:layout_below="@+id/llHeader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
     <TextView
@@ -49,9 +72,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/cookingMinutes"
         />
+    <TextView
+        android:id="@+id/likes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/servings"
+        />
     <ListView
         android:id="@+id/listComment"
-        android:layout_below="@id/servings"
+        android:layout_below="@id/likes"
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

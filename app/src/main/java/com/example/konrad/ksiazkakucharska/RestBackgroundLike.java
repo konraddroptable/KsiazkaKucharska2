@@ -1,7 +1,7 @@
 package com.example.konrad.ksiazkakucharska;
 
 import com.example.konrad.ksiazkakucharska.data.CommentList;
-import com.example.konrad.ksiazkakucharska.data.CookBook;
+import com.example.konrad.ksiazkakucharska.data.LikeList;
 
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EBean;
@@ -14,7 +14,7 @@ import org.androidannotations.annotations.rest.RestService;
  */
 
 @EBean
-public class RestBackgroundComment {
+public class RestBackgroundLike {
     @RootContext
     SelectedView activity; //activity with listview
 
@@ -24,11 +24,11 @@ public class RestBackgroundComment {
 
     //load recipes in background withoud blocking main application ;-)
     @Background
-    void getComment(String path){
+    void getLike(String path){
         try {
             restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
-            CommentList commentList = restClient.getComment(path);
-            publishResult(commentList);
+            LikeList likeList = restClient.getLike(path);
+            publishResult(likeList);
         } catch (Exception e){ //TODO: avoid using that form of catching exceptions
             publishError(e);
         }
@@ -36,8 +36,8 @@ public class RestBackgroundComment {
 
     //background updating
     @UiThread
-    void publishResult(CommentList commentList){
-        activity.updateComments(commentList);
+    void publishResult(LikeList likeList){
+        activity.updateLikes(likeList);
 }
     //background updating -> sth failed
     @UiThread
