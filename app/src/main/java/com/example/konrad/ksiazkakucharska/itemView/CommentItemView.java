@@ -29,7 +29,7 @@ public class CommentItemView extends RelativeLayout {
     }
 
     public void bind(Comment comment){
-        ownerId.setText(comment.ownerId);
+        ownerId.setText(String.valueOf(comment.ownerId));
         created.setText(comment.created);
         text.setText(comment.text);
     }

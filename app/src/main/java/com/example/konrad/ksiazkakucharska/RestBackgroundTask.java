@@ -40,6 +40,7 @@ public class RestBackgroundTask {
         activity.updateCookbook(cookBook);
     }
     //background updating -> sth failed
+    @UiThread
     void publishError(Exception e){
         activity.showError(e);
     }

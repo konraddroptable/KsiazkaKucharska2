@@ -28,7 +28,7 @@ public interface CookbookRestClient extends RestClientHeaders {
     void addCookBookEntry(Recipe recipe);
 
     //TODO:Get&Post for selecting/adding comments
-    @Get("db/comments")
+    @Get("/db/comments")
     CommentList getComment();
 //    @Post("db/comments/{recipeId}")
 //    void addComment(Comment comment);

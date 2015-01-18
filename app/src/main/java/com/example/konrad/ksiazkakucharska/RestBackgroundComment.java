@@ -40,6 +40,7 @@ public class RestBackgroundComment {
         activity.updateComments(commentList);
 }
     //background updating -> sth failed
+    @UiThread
     void publishError(Exception e){
         activity.showError(e);
     }

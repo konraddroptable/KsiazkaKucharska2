@@ -53,6 +53,8 @@ public class SelectedView extends ActionBarActivity {
 
     @AfterViews
     void init() {
+        listComment.setAdapter(adapter);
+
         title.setText(recipe.title);
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
@@ -62,11 +64,12 @@ public class SelectedView extends ActionBarActivity {
         servings.setText(recipe.servings);
 
         restBackgroundComment.getComment();
-
     }
 
     public void updateComments(CommentList commentList){
-        adapter.update(commentList);
+        if(commentList != null) {
+            adapter.update(commentList);
+        }
     }
 
     public void showError(Exception e){
