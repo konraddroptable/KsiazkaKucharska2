@@ -6,6 +6,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.konrad.ksiazkakucharska.adapter.CommentListAdapter;
+import com.example.konrad.ksiazkakucharska.data.Comment;
 import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
 
@@ -15,6 +16,10 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.NonConfigurationInstance;
 import org.androidannotations.annotations.ViewById;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Created by Konrad on 2015-01-16.
@@ -67,8 +72,20 @@ public class SelectedView extends ActionBarActivity {
     }
 
     public void updateComments(CommentList commentList){
+        CommentList commentList1 = new CommentList();
+        ListIterator listIterator = commentList.records.listIterator();
+
         if(commentList != null) {
-            adapter.update(commentList);
+            while (listIterator.hasNext()) {
+                Comment comment = (Comment) listIterator.next();
+
+                if (comment.recipeId == recipe.id)
+                    commentList1.records.add(comment);
+            }
+
+            if (commentList1 != null) {
+                adapter.update(commentList1);
+            }
         }
     }
 
