@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 @JsonIgnoreProperties(ignoreUnknown = true) //prevents crashes after changing json structure
 public class User implements Serializable {
-    public Integer id;
+    public int id;
 
     @JsonProperty("session_id")
     public String sessionId;

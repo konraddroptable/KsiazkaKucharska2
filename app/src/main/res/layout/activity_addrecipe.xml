@@ -3,4 +3,87 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="5dp"
+        android:hint="tytuł"
+        android:textColorHint="#e00000"
+        />
+    <EditText
+        android:id="@+id/introduction"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_below="@+id/title"
+        android:layout_marginBottom="10dp"
+        android:hint="opis"
+        />
+    <EditText
+        android:id="@+id/ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_below="@+id/introduction"
+        android:hint="składniki"
+        android:textColorHint="#e00000"
+        />
+    <EditText
+        android:id="@+id/steps"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_below="@+id/ingredients"
+        android:hint="wykonanie"
+        android:textColorHint="#e00000"
+        />
+
+    <LinearLayout
+        android:id="@+id/numbers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/steps"
+        >
+        <EditText
+            android:id="@+id/servings"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/steps"
+            android:layout_weight="1"
+            android:hint="porcje"
+            android:textColorHint="#e00000"
+            android:inputType="number"
+            />
+        <EditText
+            android:id="@+id/preparationMinutes"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/steps"
+            android:layout_weight="1"
+            android:hint="przygotowanie"
+            android:inputType="number"
+            />
+        <EditText
+            android:id="@+id/cookingMinutes"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_below="@+id/steps"
+            android:layout_weight="1"
+            android:hint="gotowanie"
+            android:inputType="number"
+            />
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/addrecipe"
+        android:text="Dodaj przepis"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        />
+
+
 </RelativeLayout>

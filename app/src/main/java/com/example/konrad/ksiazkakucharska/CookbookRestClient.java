@@ -1,8 +1,10 @@
 package com.example.konrad.ksiazkakucharska;
 
+import com.example.konrad.ksiazkakucharska.data.Comment;
 import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.CookBook;
 import com.example.konrad.ksiazkakucharska.data.EmailAndPassword;
+import com.example.konrad.ksiazkakucharska.data.Like;
 import com.example.konrad.ksiazkakucharska.data.LikeList;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
 import com.example.konrad.ksiazkakucharska.data.User;
@@ -25,18 +27,34 @@ public interface CookbookRestClient extends RestClientHeaders {
     //Get&Post for selecting/adding recipes
     @Get("/db/recipes")
     CookBook getCookBook();
-    @Post("/db/recipes")
-    void addCookBookEntry(Recipe recipe);
 
-    //TODO:Get&Post for selecting/adding comments
+    @RequiresHeader({"X-Dreamfactory-Application-Name","X-Dreamfactory-Session-Token"})
+    @Post("/db/recipes")
+    void addRecipe(Recipe recipe);
+
+
+
+    //region Get&Post for selecting/adding comments
     @Get("/db/comments?filter={path}")
     CommentList getComment(String path);
-//    @Post("db/comments/{recipeId}")
-//    void addComment(Comment comment);
 
-    //Get&Post likes
+    @RequiresHeader({"X-Dreamfactory-Application-Name","X-Dreamfactory-Session-Token"})
+    @Post("/db/comments")
+    void addComment(Comment comment);
+    //endregion
+
+
+
+    //region Get&Post likes
     @Get("/db/likes?filter={path}")
     LikeList getLike(String path);
+
+    @RequiresHeader({"X-Dreamfactory-Application-Name","X-Dreamfactory-Session-Token"})
+    @Post("/db/likes")
+    void setLike(Like like);
+    //endregion
+
+
 
     //Login for adding recipes/comments
     @Post("/user/session")

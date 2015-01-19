@@ -18,6 +18,8 @@
         </activity>
         <activity android:name=".LoginActivity_" />
         <activity android:name=".SelectedView_" />
+        <activity android:name=".CommentView_" />
+        <activity android:name=".AddRecipeView_" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

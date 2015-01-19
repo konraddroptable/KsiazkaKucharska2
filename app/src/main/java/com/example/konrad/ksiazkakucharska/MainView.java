@@ -29,6 +29,7 @@ public class MainView extends ActionBarActivity {
 
     @Extra
     User user;
+
     @ViewById
     ListView list;
     @Bean
@@ -52,7 +53,11 @@ public class MainView extends ActionBarActivity {
     @ItemClick
     void listItemClicked(Recipe recipe){
 //        Toast.makeText(this, item.title,Toast.LENGTH_SHORT).show();
-        SelectedView_.intent(this).recipe(recipe).start();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("recipe",recipe);
+        bundle.putSerializable("user",user);
+
+        SelectedView_.intent(this).bundle(bundle).start();
     }
 
     @Click
@@ -60,6 +65,18 @@ public class MainView extends ActionBarActivity {
         ringProgressDialog.show();
         restBackgroundTask.getCookBook();
     }
+
+    @Click
+    void addClicked(){
+        //check if user is logged in
+        if(user == null) {
+            LoginActivity_.intent(this).user(user).start();
+        } else {
+            //go to commentview activity with packed bundle
+            AddRecipeView_.intent(this).user(user).start();
+        }
+    }
+
 
     public void updateCookbook(CookBook cookBook){
         ringProgressDialog.dismiss();

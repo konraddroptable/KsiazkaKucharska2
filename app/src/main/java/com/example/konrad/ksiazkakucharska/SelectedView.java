@@ -1,6 +1,9 @@
 package com.example.konrad.ksiazkakucharska;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,9 +14,11 @@ import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.Like;
 import com.example.konrad.ksiazkakucharska.data.LikeList;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
+import com.example.konrad.ksiazkakucharska.data.User;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Bean;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.NonConfigurationInstance;
@@ -30,7 +35,17 @@ import java.util.ListIterator;
 public class SelectedView extends ActionBarActivity {
     @Extra
     Recipe recipe;
+    @Extra
+    User user;
 
+    @Extra
+    Bundle bundle;
+
+
+    //process dialog
+    ProgressDialog ringProgressDialog;
+
+    //region background tasks
     @Bean
     @NonConfigurationInstance
     RestBackgroundComment restBackgroundComment;
@@ -38,12 +53,21 @@ public class SelectedView extends ActionBarActivity {
     @Bean
     @NonConfigurationInstance
     RestBackgroundLike restBackgroundLike;
+    //endregion
 
     @Bean
     CommentListAdapter adapter;
 
+    //region list with comments
     @ViewById
     ListView listComment;
+    //endregion
+
+    //buttons
+    @ViewById
+    Button comment;
+    @ViewById
+    Button like;
 
 //region TextVievs
     @ViewById
@@ -68,6 +92,19 @@ public class SelectedView extends ActionBarActivity {
     void init() {
         listComment.setAdapter(adapter);
 
+        //unpack bundle
+        recipe = (Recipe)bundle.getSerializable("recipe");
+        user = (User)bundle.getSerializable("user");
+
+        //process dialog
+        ringProgressDialog = new ProgressDialog(this);
+        ringProgressDialog.setMessage("Ładowanie...");
+        ringProgressDialog.setIndeterminate(true);
+
+        //for loading comments
+        ringProgressDialog.show();
+
+        //set textviews
         title.setText(recipe.title);
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
@@ -76,9 +113,42 @@ public class SelectedView extends ActionBarActivity {
         cookingMinutes.setText(recipe.cookingMinutes);
         servings.setText(recipe.servings);
 
+
+        //fill comments and likes
         restBackgroundComment.getComment("recipeId=" + Integer.toString(recipe.id));
         restBackgroundLike.getLike("recipeId=" + Integer.toString(recipe.id));
     }
+
+    @Click
+    void likeClicked(){
+        //check if user is logged in
+        if(user == null) {
+            LoginActivity_.intent(this).user(user).start();
+        } else {
+            ringProgressDialog.show();
+            //add like to the recipe
+            restBackgroundLike.setLike(user, recipe);
+            //refresh like's
+            restBackgroundLike.getLike("recipeId=" + Integer.toString(recipe.id));
+        }
+    }
+
+    @Click
+    void commentClicked(){
+        //check if user is logged in
+        if(user == null) {
+            LoginActivity_.intent(this).user(user).start();
+        } else {
+            //pack bundle to another activity
+            Bundle bundle = new Bundle();
+            bundle.putSerializable("recipe",recipe);
+            bundle.putSerializable("user",user);
+
+            //go to commentview activity with packed bundle
+            CommentView_.intent(this).bundle(bundle).start();
+        }
+    }
+
 
     public void updateComments(CommentList commentList){
         if(commentList != null) {
@@ -95,8 +165,10 @@ public class SelectedView extends ActionBarActivity {
 //
 //            if (commentList1 != null) {
                 //adapter.update(commentList1);
-                adapter.update(commentList);
-            }
+            adapter.update(commentList);
+            //stop progress dialog after loading comments
+            ringProgressDialog.dismiss();
+        }
 //        }
     }
 
@@ -120,6 +192,9 @@ public class SelectedView extends ActionBarActivity {
         if(likeList != null){
             likes.setText(Integer.toString(likeList.records.size()) + " osób lubi to.");
         }
+        //stop progressdialog after loading likes
+        ringProgressDialog.dismiss();
+
     }
 
 
