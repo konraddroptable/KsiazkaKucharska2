@@ -38,15 +38,24 @@ public class RegisterActivity extends ActionBarActivity {
     @ViewById
     CheckBox autoSignIn;
 
+    ProgressDialog ringProgressDialog;
 
     @AfterViews
     void init() {
+        //auto sign-in selected by default
+        autoSignIn.setChecked(true);
+
+        ringProgressDialog = new ProgressDialog(this);
+        ringProgressDialog.setMessage("Ładowanie...");
+        ringProgressDialog.setIndeterminate(true);
     }
 
     @Click
     void registerClicked(){
+        ringProgressDialog.show();
         //new class, fill class
         RegisterNew registerNew = new RegisterNew();
+        boolean flag;
 
         registerNew.firstName = firstName.getText().toString();
         registerNew.lastName = lastName.getText().toString();
@@ -62,11 +71,18 @@ public class RegisterActivity extends ActionBarActivity {
 
 
     public void registerSuccess(User user){
-        MainView_.intent(this).user(user).start();
-        Toast.makeText(this,"Zalogowano",Toast.LENGTH_LONG).show();
+        ringProgressDialog.dismiss();
+        if(autoSignIn.isChecked() == true) {
+            MainView_.intent(this).user(user).start();
+            Toast.makeText(this, "Zarejestrowano:\n" + user.displayName, Toast.LENGTH_LONG).show();
+        } else{
+            MainView_.intent(this).start();
+            Toast.makeText(this, "Zarejestrowano:\n" + user.displayName, Toast.LENGTH_LONG).show();
+        }
     }
 
     public void showError(Exception e){
+        ringProgressDialog.dismiss();
         Toast.makeText(this,"LOL, nie działa\n" + e.getMessage(),Toast.LENGTH_LONG).show();
     }
 

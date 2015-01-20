@@ -21,6 +21,7 @@ public class RegisterNew {
     public String lastName;
     @JsonProperty("new_password")
     public String newPassword;
+
     @JsonProperty("session_id")
     public String sessionId;
 
