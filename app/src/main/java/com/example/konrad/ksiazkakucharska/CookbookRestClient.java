@@ -26,8 +26,8 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 public interface CookbookRestClient extends RestClientHeaders {
 
     //Post for registering new user
-    @Post("/user/register/?login={autoSignIn}")
-    RegisterNew registerNewUser(RegisterNew registerNew, Boolean autoSignIn);
+    @Post("/user/register/?login=true")
+    RegisterNew registerNewUser(RegisterNew registerNew);
 
 
     //Get&Post for selecting/adding recipes

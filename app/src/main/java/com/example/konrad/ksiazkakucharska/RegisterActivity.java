@@ -53,9 +53,8 @@ public class RegisterActivity extends ActionBarActivity {
         registerNew.email = email.getText().toString();
         registerNew.newPassword = newPassword.getText().toString();
 
-        Boolean flag = autoSignIn.isSelected();
         //rest background task
-        restBackgroundRegister.registerNewUser(registerNew, flag);
+        restBackgroundRegister.registerNewUser(registerNew);
 
         //start MainView intent -> pass user class to the MainView intent
 

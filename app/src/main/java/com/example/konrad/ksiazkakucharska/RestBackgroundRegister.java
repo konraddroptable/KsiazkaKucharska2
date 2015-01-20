@@ -26,13 +26,13 @@ public class RestBackgroundRegister {
 
 
     @Background
-    void registerNewUser(RegisterNew registerNew, Boolean autoSignIn){
+    void registerNewUser(RegisterNew registerNew){
         try{
             //rest client headers for POST
             restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
 
             //new class, fill output (user) class
-            RegisterNew registerNew1 = restClient.registerNewUser(registerNew, autoSignIn);
+            RegisterNew registerNew1 = restClient.registerNewUser(registerNew);
             User user = new User();
             user.id = registerNew1.id;
             user.displayName = registerNew1.displayName;
