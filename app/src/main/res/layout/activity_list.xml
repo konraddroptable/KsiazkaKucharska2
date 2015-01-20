@@ -9,20 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
-        <ImageButton
+        <Button
             android:id="@+id/refresh"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_popup_sync"
+            android:text="Odśwież"
             android:background="#333333"
             />
-        <ImageButton
+        <Button
             android:id="@+id/add"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_input_add"
+            android:text="Dodaj przepis"
             android:background="#333333"
             />
     </LinearLayout>

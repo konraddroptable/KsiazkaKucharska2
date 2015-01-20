@@ -7,6 +7,7 @@ import com.example.konrad.ksiazkakucharska.data.EmailAndPassword;
 import com.example.konrad.ksiazkakucharska.data.Like;
 import com.example.konrad.ksiazkakucharska.data.LikeList;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
+import com.example.konrad.ksiazkakucharska.data.RegisterNew;
 import com.example.konrad.ksiazkakucharska.data.User;
 
 import org.androidannotations.annotations.rest.Get;
@@ -23,6 +24,11 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
         converters = { MappingJackson2HttpMessageConverter.class })
 @RequiresHeader({"X-Dreamfactory-Application-Name"})
 public interface CookbookRestClient extends RestClientHeaders {
+
+    //Post for registering new user
+    @Post("/user/register/?login={autoSignIn}")
+    RegisterNew registerNewUser(RegisterNew registerNew, Boolean autoSignIn);
+
 
     //Get&Post for selecting/adding recipes
     @Get("/db/recipes")
@@ -42,8 +48,6 @@ public interface CookbookRestClient extends RestClientHeaders {
     @Post("/db/comments")
     void addComment(Comment comment);
     //endregion
-
-
 
     //region Get&Post likes
     @Get("/db/likes?filter={path}")

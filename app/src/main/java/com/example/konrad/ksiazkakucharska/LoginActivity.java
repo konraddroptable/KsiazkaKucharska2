@@ -58,6 +58,11 @@ public class LoginActivity extends ActionBarActivity {
         restLoginBackgroundTask.login(emailAndPassword);
     }
 
+    @Click
+    void startRegisterClicked(){
+        RegisterActivity_.intent(this).start();
+    }
+
     public void loginSuccess(User user){
         ringProgressDialog.dismiss();
         MainView_.intent(this).user(user).start();

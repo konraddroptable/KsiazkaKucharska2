@@ -20,6 +20,7 @@
         <activity android:name=".SelectedView_" />
         <activity android:name=".CommentView_" />
         <activity android:name=".AddRecipeView_" />
+        <activity android:name=".RegisterActivity_" />
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
 

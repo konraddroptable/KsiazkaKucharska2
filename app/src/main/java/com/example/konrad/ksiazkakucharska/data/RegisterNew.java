@@ -6,20 +6,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 
 /**
- * Created by Konrad on 2015-01-15.
+ * Created by Konrad on 2015-01-20.
  */
 @JsonIgnoreProperties(ignoreUnknown = true) //prevents crashes after changing json structure
-public class User implements Serializable {
-    public int id;
+public class RegisterNew {
 
-    @JsonProperty("session_id")
-    public String sessionId;
+    public int id;
+    public String email;
     @JsonProperty("display_name")
     public String displayName;
     @JsonProperty("first_name")
     public String firstName;
     @JsonProperty("last_name")
     public String lastName;
+    @JsonProperty("new_password")
+    public String newPassword;
+    @JsonProperty("session_id")
+    public String sessionId;
 
-    public String email;
 }
