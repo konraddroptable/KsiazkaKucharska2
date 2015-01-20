@@ -77,6 +77,11 @@ public class MainView extends ActionBarActivity {
         }
     }
 
+    @Click
+    void signInClicked(){
+        //sign in to the account
+        LoginActivity_.intent(this).start();
+    }
 
     public void updateCookbook(CookBook cookBook){
         ringProgressDialog.dismiss();

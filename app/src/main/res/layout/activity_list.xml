@@ -10,20 +10,25 @@
         android:layout_height="wrap_content"
         >
         <Button
+            android:id="@+id/signIn"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:text="Zaloguj"
+            />
+        <Button
             android:id="@+id/refresh"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
             android:text="Odśwież"
-            android:background="#333333"
             />
         <Button
             android:id="@+id/add"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:layout_weight="1"
-            android:text="Dodaj przepis"
-            android:background="#333333"
+            android:text="Dodaj"
             />
     </LinearLayout>
 
