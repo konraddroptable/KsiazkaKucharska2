@@ -23,6 +23,9 @@ import org.androidannotations.annotations.NonConfigurationInstance;
 import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
+import java.util.Collection;
+import java.util.Collections;
+
 @EActivity(R.layout.activity_list)
 public class MainView extends ActionBarActivity {
 
@@ -42,6 +45,7 @@ public class MainView extends ActionBarActivity {
 
     @AfterViews
     void init(){
+
         list.setAdapter(adapter);
         ringProgressDialog = new ProgressDialog(this);
         ringProgressDialog.setMessage("Ładowanie...");
@@ -84,6 +88,9 @@ public class MainView extends ActionBarActivity {
 
     public void updateCookbook(CookBook cookBook){
         ringProgressDialog.dismiss();
+        //reverse List order
+        Collections.reverse(cookBook.records);
+
         adapter.update(cookBook);
     }
 

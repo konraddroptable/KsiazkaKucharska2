@@ -13,7 +13,12 @@ import com.example.konrad.ksiazkakucharska.itemView.RecipeItemView_;
 import org.androidannotations.annotations.EBean;
 import org.androidannotations.annotations.RootContext;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -29,6 +34,8 @@ public class RecipeListAdapter extends BaseAdapter {
 
     public RecipeListAdapter() {
     }
+
+
 
     @Override
     public int getCount() {
