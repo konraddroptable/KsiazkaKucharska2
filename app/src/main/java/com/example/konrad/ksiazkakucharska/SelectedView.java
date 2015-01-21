@@ -117,6 +117,8 @@ public class SelectedView extends ActionBarActivity {
         //fill comments and likes
         restBackgroundComment.getComment("recipeId=" + Integer.toString(recipe.id));
         restBackgroundLike.getLike("recipeId=" + Integer.toString(recipe.id));
+
+
     }
 
     @Click

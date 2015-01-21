@@ -64,6 +64,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/introduction"
                 android:textStyle="bold"
+                android:textSize="17dp"
+                android:layout_marginTop="7dp"
+                android:text="polubienia"
                 />
 
             <TextView
@@ -180,9 +183,6 @@
                 android:textColor="#616161"
                 android:textStyle="italic"
                 />
-
-
-
             <ListView
                 android:id="@+id/listComment"
                 android:layout_below="@id/created"
@@ -190,7 +190,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
                 />
-
         </RelativeLayout>
     </ScrollView>
 
