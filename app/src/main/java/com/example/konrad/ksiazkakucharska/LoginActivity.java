@@ -17,6 +17,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.NonConfigurationInstance;
 import org.androidannotations.annotations.ViewById;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by Konrad on 2015-01-15.
@@ -51,11 +52,15 @@ public class LoginActivity extends ActionBarActivity {
 
     @Click
     void loginClicked(){
-        ringProgressDialog.show();
-        EmailAndPassword emailAndPassword = new EmailAndPassword();
-        emailAndPassword.email = email.getText().toString(); //example@example.com
-        emailAndPassword.password = password.getText().toString(); //test00
-        restLoginBackgroundTask.login(emailAndPassword);
+        if(StringUtils.hasText(email.getText().toString()) == true && StringUtils.hasText(password.getText().toString()) == true) {
+            ringProgressDialog.show();
+            EmailAndPassword emailAndPassword = new EmailAndPassword();
+            emailAndPassword.email = email.getText().toString(); //example@example.com
+            emailAndPassword.password = password.getText().toString(); //test00
+            restLoginBackgroundTask.login(emailAndPassword);
+        } else{
+            Toast.makeText(this, "Uzupełnij wymagane pola",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Click

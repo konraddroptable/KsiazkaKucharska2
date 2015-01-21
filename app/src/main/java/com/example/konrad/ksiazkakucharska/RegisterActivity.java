@@ -17,6 +17,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.NonConfigurationInstance;
 import org.androidannotations.annotations.ViewById;
+import org.springframework.util.StringUtils;
 
 /**
  * Created by Konrad on 2015-01-15.
@@ -52,19 +53,25 @@ public class RegisterActivity extends ActionBarActivity {
 
     @Click
     void registerClicked(){
-        ringProgressDialog.show();
-        //new class, fill class
-        RegisterNew registerNew = new RegisterNew();
-        boolean flag;
+        if(StringUtils.hasText(email.getText().toString()) == true &&
+                StringUtils.hasText(firstName.getText().toString()) == true &&
+                StringUtils.hasText(lastName.getText().toString()) == true &&
+                StringUtils.hasText(newPassword.getText().toString()) == true) {
+            ringProgressDialog.show();
+            //new class, fill class
+            RegisterNew registerNew = new RegisterNew();
+            boolean flag;
 
-        registerNew.firstName = firstName.getText().toString();
-        registerNew.lastName = lastName.getText().toString();
-        registerNew.email = email.getText().toString();
-        registerNew.newPassword = newPassword.getText().toString();
+            registerNew.firstName = firstName.getText().toString();
+            registerNew.lastName = lastName.getText().toString();
+            registerNew.email = email.getText().toString();
+            registerNew.newPassword = newPassword.getText().toString();
 
-        //rest background task
-        restBackgroundRegister.registerNewUser(registerNew);
-
+            //rest background task
+            restBackgroundRegister.registerNewUser(registerNew);
+        } else{
+            Toast.makeText(this, "Uzupełnij wymagane pola",Toast.LENGTH_LONG).show();
+        }
         //start MainView intent -> pass user class to the MainView intent
 
     }

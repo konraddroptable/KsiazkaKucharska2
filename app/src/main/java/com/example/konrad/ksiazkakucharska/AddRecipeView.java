@@ -58,9 +58,9 @@ public class AddRecipeView extends ActionBarActivity {
     void addrecipeClicked(){
         //check for required fields
         //TODO: if doesn't work well...
-        if(StringUtils.hasText(title.getText().toString()) == true ||
-                StringUtils.hasText(ingredients.getText().toString()) == true ||
-                StringUtils.hasText(steps.getText().toString()) == true ||
+        if(StringUtils.hasText(title.getText().toString()) == true &&
+                StringUtils.hasText(ingredients.getText().toString()) == true &&
+                StringUtils.hasText(steps.getText().toString()) == true &&
                 StringUtils.hasText(servings.getText().toString()) == true){
 
             //new class

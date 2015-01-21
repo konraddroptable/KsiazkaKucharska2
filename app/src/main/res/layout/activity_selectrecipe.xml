@@ -22,11 +22,18 @@
                 android:layout_marginTop="3dp"
                 >
                 <Button
+                    android:id="@+id/home"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Powrót"
+                    />
+                <Button
                     android:id="@+id/comment"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Dodaj komentarz"
+                    android:text="Dodaj"
                     />
                 <Button
                     android:id="@+id/like"
@@ -45,7 +52,6 @@
                 android:layout_marginTop="15dp"
                 android:textSize="30dp"
                 android:textStyle="bold"
-                android:text="tytuł przepisu"
                 />
             <TextView
                 android:id="@+id/introduction"
@@ -55,7 +61,6 @@
                 android:textStyle="italic"
                 android:textSize="21dp"
                 android:textColor="#616161"
-                android:text="wprowadzenie do opisu przepisu"
                 />
 
             <TextView
@@ -66,7 +71,6 @@
                 android:textStyle="bold"
                 android:textSize="17dp"
                 android:layout_marginTop="7dp"
-                android:text="polubienia"
                 />
 
             <TextView
@@ -85,7 +89,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/introingredients"
                 android:textSize="17dp"
-                android:text="składnik1\nskładnik2\składnik3\nkładnik4"
                 />
             <TextView
                 android:id="@+id/introsteps"
@@ -103,7 +106,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/introsteps"
                 android:textSize="17dp"
-                android:text="etap1\netap2\netap3\netap4"
                 />
 
 
@@ -179,6 +181,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/time"
+                android:layout_marginTop="20dp"
                 android:textSize="12dp"
                 android:textColor="#616161"
                 android:textStyle="italic"
@@ -187,8 +190,8 @@
                 android:id="@+id/listComment"
                 android:layout_below="@id/created"
                 android:layout_marginTop="25dp"
-                android:layout_width="match_parent"
-                android:layout_height="260dp"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 />
         </RelativeLayout>
     </ScrollView>

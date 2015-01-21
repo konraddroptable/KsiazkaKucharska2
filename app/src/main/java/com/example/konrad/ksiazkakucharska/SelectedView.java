@@ -3,6 +3,9 @@ package com.example.konrad.ksiazkakucharska;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -109,14 +112,15 @@ public class SelectedView extends ActionBarActivity {
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
         created.setText("Utworzono: " + recipe.created);
-        preparationMinutes.setText(recipe.preparationMinutes + "m");
-        cookingMinutes.setText(recipe.cookingMinutes + "m");
+        preparationMinutes.setText(recipe.preparationMinutes + "min.");
+        cookingMinutes.setText(recipe.cookingMinutes + "min.");
         servings.setText(recipe.servings);
 
 
         //fill comments and likes
         restBackgroundComment.getComment("recipeId=" + Integer.toString(recipe.id));
         restBackgroundLike.getLike("recipeId=" + Integer.toString(recipe.id));
+
 
 
     }
@@ -151,6 +155,15 @@ public class SelectedView extends ActionBarActivity {
         }
     }
 
+    @Click
+    void homeClicked(){
+        //check if user is logged in
+        if(user == null) {
+            MainView_.intent(this).start();
+        } else {
+            MainView_.intent(this).user(user).start();
+        }
+    }
 
     public void updateComments(CommentList commentList){
         if(commentList != null) {
@@ -168,11 +181,16 @@ public class SelectedView extends ActionBarActivity {
 //            if (commentList1 != null) {
                 //adapter.update(commentList1);
             adapter.update(commentList);
+
+            //set ListView height to number of items
+            Utility.getListViewSize(listComment);
+
             //stop progress dialog after loading comments
             ringProgressDialog.dismiss();
         }
 //        }
     }
+
 
     public void updateLikes(LikeList likeList){
 //        if(likeList != null){

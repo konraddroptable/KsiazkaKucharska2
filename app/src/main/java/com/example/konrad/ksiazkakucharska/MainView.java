@@ -24,7 +24,6 @@ import org.androidannotations.annotations.OptionsMenu;
 import org.androidannotations.annotations.ViewById;
 
 @EActivity(R.layout.activity_list)
-@OptionsMenu(R.menu.login)
 public class MainView extends ActionBarActivity {
 
     @Extra

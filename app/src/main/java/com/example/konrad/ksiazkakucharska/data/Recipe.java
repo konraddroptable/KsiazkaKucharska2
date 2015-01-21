@@ -1,5 +1,6 @@
 package com.example.konrad.ksiazkakucharska.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
@@ -19,4 +20,8 @@ public class Recipe implements Serializable {
     public String preparationMinutes;
     public String cookingMinutes;
     public String servings;
+
+    public int pictureId;
+    @JsonIgnore
+    public String pictureBytes;
 }

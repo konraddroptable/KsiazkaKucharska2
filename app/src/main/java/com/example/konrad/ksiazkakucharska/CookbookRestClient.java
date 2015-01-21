@@ -6,8 +6,10 @@ import com.example.konrad.ksiazkakucharska.data.CookBook;
 import com.example.konrad.ksiazkakucharska.data.EmailAndPassword;
 import com.example.konrad.ksiazkakucharska.data.Like;
 import com.example.konrad.ksiazkakucharska.data.LikeList;
+import com.example.konrad.ksiazkakucharska.data.Picture;
 import com.example.konrad.ksiazkakucharska.data.Recipe;
 import com.example.konrad.ksiazkakucharska.data.RegisterNew;
+import com.example.konrad.ksiazkakucharska.data.ResultWithId;
 import com.example.konrad.ksiazkakucharska.data.User;
 
 import org.androidannotations.annotations.rest.Get;
@@ -58,7 +60,10 @@ public interface CookbookRestClient extends RestClientHeaders {
     void setLike(Like like);
     //endregion
 
-
+    //Add pictures
+    @Post("/db/pictures")
+    @RequiresHeader({"X-Dreamfactory-Application-Name", "X-Dreamfactory-Session-Token"})
+    ResultWithId addPicture(Picture picture);
 
     //Login for adding recipes/comments
     @Post("/user/session")

@@ -16,12 +16,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".LoginActivity_" />
         <activity android:name=".SelectedView_" />
         <activity android:name=".CommentView_" />
         <activity android:name=".AddRecipeView_" />
         <activity android:name=".RegisterActivity_" />
-    </application>
-    <uses-permission android:name="android.permission.INTERNET" />
+        <activity android:name=".PictureActivity_" />
 
+    </application>
+
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
 </manifest>
