@@ -41,64 +41,158 @@
                 android:id="@+id/title"
                 android:layout_below="@+id/llHeader"
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textSize="30dp"
+                android:textStyle="bold"
+                android:text="tytuł przepisu"
+                />
             <TextView
                 android:id="@+id/introduction"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
+                android:textStyle="italic"
+                android:textSize="21dp"
+                android:textColor="#616161"
+                android:text="wprowadzenie do opisu przepisu"
+                />
+
+            <TextView
+                android:id="@+id/likes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/introduction"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:id="@+id/introingredients"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/likes"
+                android:layout_marginTop="15dp"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:text="Składniki:"
                 />
             <TextView
                 android:id="@+id/ingredients"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/introduction"
+                android:layout_below="@+id/introingredients"
+                android:textSize="17dp"
+                android:text="składnik1\nskładnik2\składnik3\nkładnik4"
+                />
+            <TextView
+                android:id="@+id/introsteps"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ingredients"
+                android:layout_marginTop="15dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="Etapy przygotowania:"
                 />
             <TextView
                 android:id="@+id/steps"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ingredients"
+                android:layout_below="@+id/introsteps"
+                android:textSize="17dp"
+                android:text="etap1\netap2\netap3\netap4"
                 />
-            <TextView
-                android:id="@+id/created"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/steps"
-                />
-            <TextView
-                android:id="@+id/preparationMinutes"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/created"
-                />
-            <TextView
-                android:id="@+id/cookingMinutes"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/preparationMinutes"
-                />
-            <TextView
-                android:id="@+id/servings"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/cookingMinutes"
-                />
-            <TextView
-                android:id="@+id/likes"
+
+
+            <LinearLayout
+                android:id="@+id/timeTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/servings"
+                android:layout_marginTop="20dp"
+                android:layout_below="@+id/steps"
+                >
+                <TextView
+                    android:id="@+id/preparationMinutesTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_weight="1"
+                    android:text="Przygotowanie:"
+                    android:textColor="#616161"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    />
+                <TextView
+                    android:id="@+id/cookingMinutesTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_weight="1"
+                    android:text="Gotowanie:"
+                    android:textStyle="bold"
+                    android:textColor="#616161"
+                    android:textSize="16dp"
+                    />
+                <TextView
+                    android:id="@+id/servingsTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="21dp"
+                    android:layout_weight="1"
+                    android:text="Porcje:"
+                    android:textColor="#616161"
+                    android:textStyle="bold"
+                    android:textSize="16dp"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/timeTitle"
+                >
+                <TextView
+                    android:id="@+id/preparationMinutes"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:textSize="17dp"
+                    />
+                <TextView
+                    android:id="@+id/cookingMinutes"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:textSize="17dp"
+                    />
+                <TextView
+                    android:id="@+id/servings"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="1"
+                    android:textSize="17dp"
+                    />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/created"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/time"
+                android:textSize="12dp"
+                android:textColor="#616161"
+                android:textStyle="italic"
                 />
+
+
+
+            <ListView
+                android:id="@+id/listComment"
+                android:layout_below="@id/created"
+                android:layout_marginTop="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                />
+
         </RelativeLayout>
     </ScrollView>
-    <ListView
-        android:id="@+id/listComment"
-        android:layout_below="@id/scrollView"
-        android:layout_marginTop="25dp"
-        android:layout_width="match_parent"
-        android:layout_height="260dp"
-        />
 
 
 </RelativeLayout>

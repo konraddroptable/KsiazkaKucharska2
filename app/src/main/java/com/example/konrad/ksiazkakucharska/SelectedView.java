@@ -108,9 +108,9 @@ public class SelectedView extends ActionBarActivity {
         title.setText(recipe.title);
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
-        created.setText(recipe.created);
-        preparationMinutes.setText(recipe.preparationMinutes);
-        cookingMinutes.setText(recipe.cookingMinutes);
+        created.setText("Utworzono: " + recipe.created);
+        preparationMinutes.setText(recipe.preparationMinutes + "m");
+        cookingMinutes.setText(recipe.cookingMinutes + "m");
         servings.setText(recipe.servings);
 
 
