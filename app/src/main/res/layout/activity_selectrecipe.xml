@@ -52,6 +52,7 @@
                 android:layout_marginTop="15dp"
                 android:textSize="30dp"
                 android:textStyle="bold"
+                android:textColor="#FF4444"
                 />
             <TextView
                 android:id="@+id/introduction"
@@ -81,6 +82,7 @@
                 android:layout_marginTop="15dp"
                 android:textSize="18dp"
                 android:textStyle="bold"
+                android:textColor="#FF4444"
                 android:text="Składniki:"
                 />
             <TextView
@@ -99,6 +101,7 @@
                 android:textStyle="bold"
                 android:textSize="18dp"
                 android:text="Etapy przygotowania:"
+                android:textColor="#FF4444"
                 />
             <TextView
                 android:id="@+id/steps"
