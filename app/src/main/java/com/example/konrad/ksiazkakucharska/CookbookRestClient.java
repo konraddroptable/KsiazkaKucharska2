@@ -11,6 +11,7 @@ import com.example.konrad.ksiazkakucharska.data.Recipe;
 import com.example.konrad.ksiazkakucharska.data.RegisterNew;
 import com.example.konrad.ksiazkakucharska.data.ResultWithId;
 import com.example.konrad.ksiazkakucharska.data.User;
+import com.example.konrad.ksiazkakucharska.data.UserList;
 
 import org.androidannotations.annotations.rest.Get;
 import org.androidannotations.annotations.rest.Post;
@@ -41,6 +42,11 @@ public interface CookbookRestClient extends RestClientHeaders {
     void addRecipe(Recipe recipe);
 
 
+    //get users
+    @RequiresHeader({"X-Dreamfactory-Application-Name","X-Dreamfactory-Session-Token"})
+    @Get("/system/user?ids={id}")
+    UserList getUserId(String id);
+
 
     //region Get&Post for selecting/adding comments
     @Get("/db/comments?filter={path}")
@@ -60,10 +66,14 @@ public interface CookbookRestClient extends RestClientHeaders {
     void setLike(Like like);
     //endregion
 
-    //Add pictures
+    //region Get&Post pictures
+    @Get("/db/pictures/{id}")
+    Picture getPictreById(int id);
+
     @Post("/db/pictures")
     @RequiresHeader({"X-Dreamfactory-Application-Name", "X-Dreamfactory-Session-Token"})
     ResultWithId addPicture(Picture picture);
+    //endregion
 
     //Login for adding recipes/comments
     @Post("/user/session")

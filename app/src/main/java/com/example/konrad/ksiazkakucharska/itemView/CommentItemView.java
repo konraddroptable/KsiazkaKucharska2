@@ -30,7 +30,13 @@ public class CommentItemView extends RelativeLayout {
 
     public void bind(Comment comment){
 
-        ownerId.setText(String.valueOf(comment.ownerId));
+        //show display name if user is signed in
+        if(comment.displayName != null){
+            ownerId.setText(comment.displayName);
+        } else {
+            ownerId.setText(String.valueOf(comment.ownerId));
+        }
+
         created.setText(comment.created);
         text.setText(comment.text);
     }

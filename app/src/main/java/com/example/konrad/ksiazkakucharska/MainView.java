@@ -51,6 +51,11 @@ public class MainView extends ActionBarActivity {
         ringProgressDialog.setMessage("Ładowanie...");
         ringProgressDialog.setIndeterminate(true);
 //        Toast.makeText(this,user.sessionId,Toast.LENGTH_LONG).show();
+
+        ringProgressDialog.show();
+        //refresh on start
+        refreshClicked();
+        ringProgressDialog.dismiss();
     }
 
     @ItemClick
@@ -66,7 +71,7 @@ public class MainView extends ActionBarActivity {
     @Click
     void refreshClicked(){
         ringProgressDialog.show();
-        restBackgroundTask.getCookBook();
+        restBackgroundTask.getCookBook(user);
     }
 
     @Click

@@ -3,21 +3,32 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/acronym"
+    <!--<TextView-->
+        <!--android:id="@+id/acronym"-->
+        <!--android:layout_width="50dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:text="J"-->
+        <!--android:textColor="#FF4444"-->
+        <!--android:textSize="48sp"-->
+        <!--/>-->
+    <com.makeramen.RoundedImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/avatar"
         android:layout_width="50dp"
         android:layout_height="60dp"
-        android:layout_marginLeft="10dp"
-        android:text="J"
-        android:textColor="#FF4444"
-        android:textSize="48sp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="10dip"
+        android:scaleType="centerInside"
+        app:riv_oval="true"
         />
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/acronym"
+        android:layout_toRightOf="@id/avatar"
         android:text="Agnieszka Pałąk"
         android:textSize="20sp"
         />
@@ -26,9 +37,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:layout_toRightOf="@id/acronym"
+        android:layout_toRightOf="@id/avatar"
         android:layout_below="@id/title"
         android:text="Biedronka SA"
         android:textSize="16sp"
+        />
+    <TextView
+        android:id="@+id/displayName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@+id/avatar"
+        android:layout_below="@id/introduction"
+        android:textSize="12dp"
+        android:textStyle="italic"
+        android:textColor="#616161"
         />
 </RelativeLayout>

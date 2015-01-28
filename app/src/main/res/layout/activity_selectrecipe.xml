@@ -44,23 +44,58 @@
                     />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/title"
-                android:layout_below="@+id/llHeader"
-                android:layout_width="fill_parent"
+
+            <LinearLayout
+                android:id="@+id/llRow"
+                android:layout_below="@id/llHeader"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:textSize="30dp"
-                android:textStyle="bold"
-                android:textColor="#FF4444"
-                />
+                android:orientation="horizontal"
+                >
+                <com.makeramen.RoundedImageView
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    android:id="@+id/avatar"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="5dp"
+                    android:scaleType="centerInside"
+                    app:riv_oval="true"
+                    />
+                <LinearLayout
+                    android:id="@+id/llTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:orientation="vertical"
+                    >
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:textSize="30dp"
+                        android:textStyle="bold"
+                        android:textColor="#FF4444"
+                        />
+                    <TextView
+                        android:id="@+id/introduction"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="italic"
+                        android:textSize="21dp"
+                        android:textColor="#616161"
+                        />
+                </LinearLayout>
+                </LinearLayout>
+
             <TextView
-                android:id="@+id/introduction"
-                android:layout_width="fill_parent"
+                android:id="@+id/author"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/title"
+                android:layout_below="@+id/llRow"
+                android:textSize="12dp"
                 android:textStyle="italic"
-                android:textSize="21dp"
                 android:textColor="#616161"
                 />
 
@@ -68,7 +103,7 @@
                 android:id="@+id/likes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/introduction"
+                android:layout_below="@id/author"
                 android:textStyle="bold"
                 android:textSize="17dp"
                 android:layout_marginTop="7dp"
@@ -76,7 +111,7 @@
 
             <TextView
                 android:id="@+id/introingredients"
-                android:layout_width="fill_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/likes"
                 android:layout_marginTop="15dp"

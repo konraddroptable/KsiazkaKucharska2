@@ -1,12 +1,16 @@
 package com.example.konrad.ksiazkakucharska;
 
 import android.app.ProgressDialog;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -71,6 +75,9 @@ public class SelectedView extends ActionBarActivity {
     Button comment;
     @ViewById
     Button like;
+    //imageview
+    @ViewById
+    ImageView avatar;
 
 //region TextVievs
     @ViewById
@@ -82,6 +89,8 @@ public class SelectedView extends ActionBarActivity {
     @ViewById
     TextView created;
     @ViewById
+    TextView steps;
+    @ViewById
     TextView preparationMinutes;
     @ViewById
     TextView cookingMinutes;
@@ -89,6 +98,8 @@ public class SelectedView extends ActionBarActivity {
     TextView servings;
     @ViewById
     TextView likes;
+    @ViewById
+    TextView author;
 //endregion
 
     @AfterViews
@@ -112,13 +123,28 @@ public class SelectedView extends ActionBarActivity {
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
         created.setText("Utworzono: " + recipe.created);
-        preparationMinutes.setText(recipe.preparationMinutes + "min.");
-        cookingMinutes.setText(recipe.cookingMinutes + "min.");
+        if(recipe.preparationMinutes != null)
+            preparationMinutes.setText(recipe.preparationMinutes + "min.");
+        if(recipe.cookingMinutes != null)
+            cookingMinutes.setText(recipe.cookingMinutes + "min.");
         servings.setText(recipe.servings);
+        steps.setText(recipe.steps);
+        //set display name
+        if(recipe.displayName != null){
+            author.setText("Autor: " + recipe.displayName);
+        }
 
+        //set imageview
+        if(recipe.pictureBytes != null){
+            Utility.decodeAndSetImage(recipe.pictureBytes, avatar);
+        } else{
+            //avatar.setImageDrawable(getResources().getDrawable(R.drawable.cooking_pot));
+            avatar.setImageDrawable(getResources().getDrawable(R.drawable.cooking_pot));
+            Utility.colorFilter(avatar);
+        }
 
         //fill comments and likes
-        restBackgroundComment.getComment("recipeId=" + Integer.toString(recipe.id));
+        restBackgroundComment.getComment("recipeId=" + Integer.toString(recipe.id), user);
         restBackgroundLike.getLike("recipeId=" + Integer.toString(recipe.id));
 
 

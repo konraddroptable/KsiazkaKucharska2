@@ -70,6 +70,6 @@ public class RecipeListAdapter extends BaseAdapter {
     public void update(CookBook cookBook) {
         recipes.clear();
         recipes.addAll(cookBook.records);
-        notifyDataSetChanged();
+        this.notifyDataSetChanged();
     }
 }
