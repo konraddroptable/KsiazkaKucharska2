@@ -45,8 +45,11 @@ public class RecipeItemView extends RelativeLayout {
 //        created.setText(recipe.created.toString());
         introduction.setText(recipe.introduction);
 
-        if(recipe.displayName != null)
+        if(recipe.displayName != null) {
             displayName.setText(recipe.displayName);
+        } else{
+            displayName.setText(null);
+        }
 
         if(recipe.pictureBytes != null){
             Utility.decodeAndSetImage(recipe.pictureBytes, avatar);

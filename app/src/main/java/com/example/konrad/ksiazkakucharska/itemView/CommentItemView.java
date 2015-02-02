@@ -34,7 +34,7 @@ public class CommentItemView extends RelativeLayout {
         if(comment.displayName != null){
             ownerId.setText(comment.displayName);
         } else {
-            ownerId.setText(String.valueOf(comment.ownerId));
+            ownerId.setText(null);
         }
 
         created.setText(comment.created);

@@ -1,5 +1,6 @@
 package com.example.konrad.ksiazkakucharska.data;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -22,4 +23,6 @@ public class User implements Serializable {
     public String lastName;
 
     public String email;
+    @JsonIgnore
+    public Integer pictureId;
 }

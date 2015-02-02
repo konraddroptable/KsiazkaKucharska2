@@ -1,5 +1,6 @@
 package com.example.konrad.ksiazkakucharska;
 
+import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -50,7 +51,6 @@ public class AddRecipeView extends ActionBarActivity {
 
     @AfterViews
     void init() {
-
     }
 
 
@@ -75,6 +75,12 @@ public class AddRecipeView extends ActionBarActivity {
             //owner id
             recipe.ownerId = user.id;
 
+            if(user.pictureId != null){
+                recipe.pictureId = user.pictureId;
+            } else{
+                recipe.pictureId = null;
+            }
+
             //POST operation
             restBackgroundAddRecipe.addRecipe(recipe,user);
 
@@ -85,6 +91,11 @@ public class AddRecipeView extends ActionBarActivity {
         }
     }
 
+    @Click
+    void addPictureClicked(){
+        PictureActivity_.intent(this).user(user).start();
+
+    }
 
     public void showSuccess(){
         Toast.makeText(this,"Dodano przepis!",Toast.LENGTH_LONG).show();

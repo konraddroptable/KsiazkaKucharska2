@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
@@ -27,6 +28,7 @@ import org.androidannotations.annotations.ViewById;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 
+import com.example.konrad.ksiazkakucharska.data.Recipe;
 import com.example.konrad.ksiazkakucharska.data.User;
 
 
@@ -42,12 +44,24 @@ public class PictureActivity extends ActionBarActivity {
     @Extra
     User user;
 
+
     @Bean
     @NonConfigurationInstance
     RestPictureBackgroundTask restBackgroundTask;
 
     @ViewById
     ImageView picture;
+
+    Integer pictureId;
+
+    void init(){
+
+    }
+
+    @Click
+    void goBackClicked(){
+        AddRecipeView_.intent(this).user(user).start();
+    }
 
     @Click
     void addPictureClicked()    {
@@ -188,11 +202,13 @@ public class PictureActivity extends ActionBarActivity {
     }
 
     public void pictureAdded(int id) {
+
+        user.pictureId = id;
         Toast.makeText(this, "Picture added with id=" + id + ".", Toast.LENGTH_SHORT).show();
     }
 
     public void addPictureFailed(Exception e) {
-        Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        Toast.makeText(this,"Jakiś problem też jest\n" + e.getMessage(), Toast.LENGTH_LONG).show();
         e.printStackTrace();
     }
 

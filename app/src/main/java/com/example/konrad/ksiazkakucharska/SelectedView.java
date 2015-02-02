@@ -123,15 +123,27 @@ public class SelectedView extends ActionBarActivity {
         introduction.setText(recipe.introduction);
         ingredients.setText(recipe.ingredients);
         created.setText("Utworzono: " + recipe.created);
-        if(recipe.preparationMinutes != null)
+
+        if(recipe.preparationMinutes != null) {
             preparationMinutes.setText(recipe.preparationMinutes + "min.");
-        if(recipe.cookingMinutes != null)
+        } else{
+            preparationMinutes.setText(null);
+        }
+
+        if(recipe.cookingMinutes != null) {
             cookingMinutes.setText(recipe.cookingMinutes + "min.");
+        } else{
+            cookingMinutes.setText(null);
+        }
+
         servings.setText(recipe.servings);
         steps.setText(recipe.steps);
+
         //set display name
         if(recipe.displayName != null){
-            author.setText("Autor: " + recipe.displayName);
+            author.setText("Autor: " + recipe.displayName.toString());
+        } else{
+            author.setText(null);
         }
 
         //set imageview
@@ -146,8 +158,6 @@ public class SelectedView extends ActionBarActivity {
         //fill comments and likes
         restBackgroundComment.getComment("recipeId=" + Integer.toString(recipe.id), user);
         restBackgroundLike.getLike("recipeId=" + Integer.toString(recipe.id));
-
-
 
     }
 
@@ -206,13 +216,14 @@ public class SelectedView extends ActionBarActivity {
 //
 //            if (commentList1 != null) {
                 //adapter.update(commentList1);
-            adapter.update(commentList);
+                adapter.update(commentList);
 
-            //set ListView height to number of items
-            Utility.getListViewSize(listComment);
+                //set ListView height to number of items
 
-            //stop progress dialog after loading comments
-            ringProgressDialog.dismiss();
+                Utility.getListViewSize(listComment);
+
+                //stop progress dialog after loading comments
+                ringProgressDialog.dismiss();
         }
 //        }
     }

@@ -29,7 +29,7 @@ public class RestPictureBackgroundTask {
             Picture picture = new Picture();
             picture.ownerId = apiUser.id;
             picture.base64bytes = pictureBytes;
-            restClient.setHeader("X-Dreamfactory-Application-Name", "phonebook");
+            restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
             restClient.setHeader("X-Dreamfactory-Session-Token", apiUser.sessionId);
             ResultWithId result = restClient.addPicture(picture);
             publishAddPictureSuccess(result.id);

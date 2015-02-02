@@ -35,38 +35,39 @@ public class RestBackgroundComment {
         try {
             restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
             CommentList commentList = restClient.getComment(path);
-            publishResult(commentList);
 
-
-            if(user != null) {
-                List<Integer> list = new ArrayList<Integer>();
-                String userIds = null;
-                //get unique IDs
-                for (Comment comment : commentList.records) {
-                    if (list.contains(comment.ownerId) == false || list.size() == 0) {
-                        list.add(comment.ownerId);
-                        userIds += comment.ownerId + ",";
+            if(commentList != null) {
+                if (user != null) {
+                    List<Integer> list = new ArrayList<Integer>();
+                    String userIds = null;
+                    //get unique IDs
+                    for (Comment comment : commentList.records) {
+                        if (list.contains(comment.ownerId) == false) {
+                            list.add(comment.ownerId);
+                            userIds += comment.ownerId + ",";
+                        }
                     }
-                }
+                    userIds += 3 + ",";
 
-                //String preparation
-                String ids = userIds.substring(0,userIds.length()-1);
+                    //String preparation
+                    String ids = userIds.substring(0, userIds.length() - 1);
 
-                //get
-                restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
-                restClient.setHeader("X-Dreamfactory-Session-Token", user.sessionId);
-                UserList userList = restClient.getUserId(ids);
+                    //get
+                    restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
+                    restClient.setHeader("X-Dreamfactory-Session-Token", user.sessionId);
+                    UserList userList = restClient.getUserId(ids);
 
-                //}
-                //update display names
-                //if(userList != null) {
-                for (Comment comment : commentList.records) {
-                    for (int i = 0; i < userList.records.size(); i++) {
-                        if (userList.records.get(i).id == comment.ownerId)
-                            comment.displayName = userList.records.get(i).displayName;
+                    //}
+                    //update display names
+                    //if(userList != null) {
+                    for (Comment comment : commentList.records) {
+                        for (int i = 0; i < userList.records.size(); i++) {
+                            if (userList.records.get(i).id == comment.ownerId)
+                                comment.displayName = userList.records.get(i).displayName;
+                        }
                     }
+                    //}
                 }
-                //}
             }
 //            update display names
 //            for(Comment comment: commentList.records){
@@ -77,6 +78,8 @@ public class RestBackgroundComment {
 //                    comment.displayName = user1.displayName;
 //                }
 //            }
+
+            publishResult(commentList);
 
         } catch (Exception e){ //TODO: avoid using that form of catching exceptions
             publishError(e);

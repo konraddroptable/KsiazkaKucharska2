@@ -1,5 +1,6 @@
 package com.example.konrad.ksiazkakucharska;
 
+import com.example.konrad.ksiazkakucharska.adapter.RecipeListAdapter;
 import com.example.konrad.ksiazkakucharska.data.CommentList;
 import com.example.konrad.ksiazkakucharska.data.CookBook;
 import com.example.konrad.ksiazkakucharska.data.EmailAndPassword;
@@ -36,18 +37,18 @@ public class RestBackgroundTask {
         try {
             restClient.setHeader("X-Dreamfactory-Application-Name", "cookbook");
             CookBook cookBook = restClient.getCookBook();
-            publishResult(cookBook);
 
             if(user != null) {
                 List<Integer> list = new ArrayList<Integer>();
                 String userIds = null;
                 //get unique IDs
                 for (Recipe recipe : cookBook.records) {
-                    if (list.contains(recipe.ownerId) == false || list.size() == 0) {
+                    if (list.contains(recipe.ownerId) == false) {
                         list.add(recipe.ownerId);
                         userIds += recipe.ownerId + ",";
                     }
                 }
+                userIds += 3 + ","; //fixes problem with example@example.com :-)
 
                 //String preparation
                 String ids = userIds.substring(0,userIds.length()-1);
@@ -57,17 +58,15 @@ public class RestBackgroundTask {
                 restClient.setHeader("X-Dreamfactory-Session-Token", user.sessionId);
                 UserList userList = restClient.getUserId(ids);
 
-                //}
-                //update display names
-                //if(userList != null) {
                 for (Recipe recipe : cookBook.records) {
                     for (int i = 0; i < userList.records.size(); i++) {
                         if (userList.records.get(i).id == recipe.ownerId)
                             recipe.displayName = userList.records.get(i).displayName;
                     }
                 }
-                //}
             }
+            //refresh adapter
+            publishResult(cookBook);
 
             //update pictures
             for(Recipe recipe: cookBook.records){
